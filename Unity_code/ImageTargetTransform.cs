@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using Vuforia;
 
+// Useless comment
+
 public class ImageTargetTransform : MonoBehaviour
 {
     private ImageTargetBehaviour imageTargetBehaviour;
