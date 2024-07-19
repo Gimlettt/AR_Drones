@@ -4,6 +4,8 @@ using UnityEngine;
 using Vuforia;
 using TMPro;
 
+//useless comment
+
 public class LocationCheck : MonoBehaviour
 {
     private ImageTargetBehaviour imageTargetBehaviour;
