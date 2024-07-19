@@ -16,44 +16,69 @@ public class PropSpawn : MonoBehaviour
  
     private float width = 0.1482f;
     private float height = -0.1009f;
-
     private float length_pos = 0.3505f;
     private float length_neg = -0.3455f;
 
+    private Vector3[] relativePositions;
+    private Vector3[] relativeRotations;
 
-
+   
 
     // Start is called before the first frame update
     void Start()
     {
-     
-            Vector3[] relativePositions = new Vector3[]
-        {
-            new Vector3(0.2f, height, width),
-            new Vector3(0.2f, height, -width),
-            new Vector3(-0.2f, height, width),
-            new Vector3(-0.2f, height, -width),
-            new Vector3(0, height, width),
-            new Vector3(0, height, -width),
-            new Vector3(length_neg, height, 0),
-            new Vector3(length_pos, height, 0)
-        };
-
-        Vector3[] relativeRotations = new Vector3[]
-        {
-            new Vector3(-90, 0, 0),
-            new Vector3(-90, 0, 180),
-            new Vector3(-90, 0, 0),
-            new Vector3(-90, 0, 180),
-            new Vector3(-90, 0, 0),
-            new Vector3(-90, 0, 180),
-            new Vector3(-90, -90, 0),
-            new Vector3(-90, 90, 0)
-        };
         
+         if(droneConfiguration == 4)
+        {
+                relativePositions = new Vector3[]
+            {
+                new Vector3(0.2f, height, width),
+                new Vector3(0.2f, height, -width),
+                new Vector3(-0.2f, height, width),
+                new Vector3(-0.2f, height, -width)
+                
+            };
 
-        // Instantiate at the specified relative positions
-        propulsionModules = new GameObject[8];
+                relativeRotations = new Vector3[]
+            {
+                new Vector3(-90, 0, 0),
+                new Vector3(-90, 0, 180),
+                new Vector3(-90, 0, 0),
+                new Vector3(-90, 0, 180)
+                
+            };
+
+        }  
+            if(droneConfiguration == 8)
+        {
+                relativePositions = new Vector3[]
+            {
+                new Vector3(0.2f, height, width),
+                new Vector3(0.2f, height, -width),
+                new Vector3(-0.2f, height, width),
+                new Vector3(-0.2f, height, -width),
+                new Vector3(0, height, width),
+                new Vector3(0, height, -width),
+                new Vector3(length_neg, height, 0),
+                new Vector3(length_pos, height, 0)
+            };
+
+                relativeRotations = new Vector3[]
+            {
+                new Vector3(-90, 0, 0),
+                new Vector3(-90, 0, 180),
+                new Vector3(-90, 0, 0),
+                new Vector3(-90, 0, 180),
+                new Vector3(-90, 0, 0),
+                new Vector3(-90, 0, 180),
+                new Vector3(-90, -90, 0),
+                new Vector3(-90, 90, 0)
+            };
+        }
+
+
+        // Instantiate cylinders at the specified relative positions
+        propulsionModules = new GameObject[droneConfiguration];
         for (int i = 0; i < propulsionModules.Length; i++)
         {
             propulsionModules[i] = Instantiate(propulsionPrefab, this.transform);
@@ -73,8 +98,7 @@ public class PropSpawn : MonoBehaviour
     public void Distance(Vector3 copterPosition)
     {
        float dist = Vector3.Distance(copterPosition, propulsionModules[0].transform.position);
-            //print("Distance to other: " + dist);
 
-            canvasText.text = "Distance to other: " + dist;
+        canvasText.text = "Distance to desired position: " + dist;
     }
 }
